@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('./models/user'); // replace with the path to your User model
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/your-database'; // replace with your MongoDB connection string
-
+const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Mongo Connection Open")
