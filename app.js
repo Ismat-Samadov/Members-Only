@@ -1,22 +1,20 @@
 const express = require('express');
 const session = require('express-session');
-const MongoDBStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const path = require('path'); // Add this line
+const path = require('path');
 require('dotenv').config();
-
+console.log("DB_URL:", process.env.DB_URL);
+console.log("SESSION_SECRET:", process.env.SESSION_SECRET);
 const app = express();
 
-const dbUrl = process.env.DB_URL;
 
 app.use(session({
-  secret: 'your secret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  store: MongoDBStore.create({
-    mongoUrl: dbUrl
-  })
+  store: MongoStore.create({ mongoUrl: process.env.DB_URL })
 }));
 
 app.set('view engine', 'ejs');
@@ -26,8 +24,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(bodyParser.json());
-
-app.set('views', path.join(__dirname, 'views'));
 
 const authRoutes = require('./routes/auth');
 app.use('/', authRoutes);

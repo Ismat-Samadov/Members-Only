@@ -3,21 +3,24 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongo');
+const User = require('../models/user'); 
 require('dotenv').config();
 
 // Create a session store
 const store = MongoDBStore.create({
-    mongoUrl: process.env.MONGO_URL,
+    mongoUrl: process.env.DB_URL, // Changed from MONGO_URL to DB_URL
     collectionName: 'sessions'
 });
 
 // Use express-session middleware
 router.use(session({
-    secret: 'your-secret-key', // Replace with your own secret key
+    secret: process.env.SESSION_SECRET, // Use the SESSION_SECRET from .env file
     resave: false,
     saveUninitialized: false,
     store: store
 }));
+
+// Rest of your code...
 
 // Display the registration form
 router.get('/register', function(req, res) {
