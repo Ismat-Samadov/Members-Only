@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongo');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const path = require('path'); // Add this line
@@ -8,10 +9,14 @@ require('dotenv').config();
 const app = express();
 
 const dbUrl = process.env.DB_URL;
+
 app.use(session({
   secret: 'your secret',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoDBStore.create({
+    mongoUrl: dbUrl
+  })
 }));
 
 app.set('view engine', 'ejs');

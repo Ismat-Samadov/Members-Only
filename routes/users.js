@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const User = require('../models/User'); // Assuming you have a User model
 const session = require('express-session');
 const MongoDBStore = require('connect-mongo');
 require('dotenv').config();
