@@ -20,7 +20,6 @@ router.use(session({
     store: store
 }));
 
-// Rest of your code...
 
 // Display the registration form
 router.get('/register', function(req, res) {

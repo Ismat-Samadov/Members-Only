@@ -1,4 +1,5 @@
 node_modulesc
+.env
 # Logs
 logs
 *.log
