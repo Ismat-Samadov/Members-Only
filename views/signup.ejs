@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header>
+      <%- include('./partials/header'); %>
+    </header>
+    
+    <main>
+      <h1><%= title %></h1>
+
+      <form action="" method="post">
+
+        <% if (typeof user === 'undefined') { %>
+          <label for="firstname">First Name
+          <input type="text" id="firstname" name="firstname"></label>
+
+          <label for="lastname">Last Name
+          <input type="text" id="lastname" name="lastname"></label>
+
+          <label for="email">Email
+          <input type="email" id="email" name="email"></label>
+
+          <label for="password">Password
+          <input type="password" id="password" name="password"></label>
+
+          <label for="passwordconfirm">Confirm Password
+          <input type="password" id="passwordconfirm" name="passwordconfirm"></label>
+        <% } else { %>
+          <label for="firstname">First Name
+          <input type="text" id="firstname" name="firstname" value="<%= user.firstName %>"></label>
+
+          <label for="lastname">Last Name
+          <input type="text" id="lastname" name="lastname" value="<%= user.lastName %>"></label>
+
+          <label for="email">Email
+          <input type="email" id="email" name="email" value="<%= user.email %>"></label>
+
+          <label for="password">Password
+          <input type="password" id="password" name="password"></label>
+
+          <label for="passwordconfirm">Confirm Password
+          <input type="password" id="passwordconfirm" name="passwordconfirm"></label>
+        <% } %>
+
+        <button class="form-submit" type="submit">Submit</button>
+      </form>
+
+      <% if (typeof errors !== 'undefined') { %>
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error.msg %></li>
+          <% }); %>
+        </ul>
+      <% } %>
+
+    </main>
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>    
+  </body>
+</html>

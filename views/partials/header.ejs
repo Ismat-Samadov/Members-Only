@@ -1,0 +1,40 @@
+<nav class="navbar">
+    <a class="navbar-brand" href="/">Clubhouse</a>
+    <ul class="navbar-nav">
+        <% if (!currentUser) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/sign-up">Sign Up</a>
+            </li>
+        <% } else if (!currentUser.isMember) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-message">Create message</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/membership">Become Member</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        <% } else if (!currentUser.isAdmin) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-message">Create message</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">Become Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        <% } else if (currentUser.isAdmin) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="/create-message">Create message</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        <% } %>
+    </ul>
+</nav>

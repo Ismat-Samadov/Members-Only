@@ -8,33 +8,30 @@
     <header>
       <%- include('./partials/header'); %>
     </header>
+    
     <main>
       <h1><%= title %></h1>
-      <p>You will automatically be logged out after 15 minutes</p>
 
       <form action="" method="post">
 
-        <label for="email">Email
-          <input type="email" id="email" name="username">
-        </label>
+          <label for="title">Message Title
+          <input type="text" id="title" name="title"></label>
 
-        <label for="password">Password
-          <input type="password" id="password" name="password">
-        </label>
+          <label for="messagetext">Message
+          <textarea type="text" id="messagetext" name="messagetext"></textarea></label>
 
-        <button class="form-submit" type="submit">Login</button>
+        <button class="form-submit" type="submit">Submit</button>
       </form>
 
       <% if (typeof errors !== 'undefined') { %>
         <ul>
           <% errors.forEach(function(error) { %>
-            <li><%= error.message %></li>
+            <li><%= error.msg %></li>
           <% }); %>
         </ul>
       <% } %>
 
     </main>
-
     <footer>
       <%- include('./partials/footer'); %>
     </footer>    

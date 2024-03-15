@@ -10,29 +10,22 @@
     </header>
     <main>
       <h1><%= title %></h1>
-      <p>You will automatically be logged out after 15 minutes</p>
-
+        <h3 class="riddle">Enter the correct password to become an admin</h3>
       <form action="" method="post">
-
-        <label for="email">Email
-          <input type="email" id="email" name="username">
+        <label for="adminkey">Password:
+          <input type="adminkey" id="adminkey" name="adminkey">
         </label>
 
-        <label for="password">Password
-          <input type="password" id="password" name="password">
-        </label>
-
-        <button class="form-submit" type="submit">Login</button>
+        <button class="form-submit" type="submit">Submit</button>
       </form>
 
       <% if (typeof errors !== 'undefined') { %>
         <ul>
           <% errors.forEach(function(error) { %>
-            <li><%= error.message %></li>
+            <li><%= error.msg %></li>
           <% }); %>
         </ul>
       <% } %>
-
     </main>
 
     <footer>

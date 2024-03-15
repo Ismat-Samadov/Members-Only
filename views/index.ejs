@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title><%= title %></title>
-</head>
-<body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <a href="/users/register">Register</a>
-    <a href="/users/login">Login</a>
-</body>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header>
+      <%- include('./partials/header'); %>
+    </header>
+    
+    <main>
+      <h1><%= title %></h1>
+      <% if (!currentUser) { %>
+        <h3>Welcome to the Clubhouse!</h3>
+      <% } else { %>
+        <h3>Welcome <strong><%= `${currentUser.firstName}  ${currentUser.lastName}` %>!</strong></h3>
+      <% } %>
+
+      <% if (!allMessages || allMessages.length === 0) { %>
+      <p>There are no posts</p>
+      <% } %>
+
+      <div class="message-container">
+
+        <% if (!currentUser || currentUser.isMember !== true) { %>
+          <% allMessages.forEach(function(message) { %>
+            <div class="message">
+              <h3>Title: <%= message.title %></h3>
+              <p>Message: <%= message.text %></p>
+              <p>Sign in or become a member to see post author and date</p>
+            </div>
+          <% }); %>
+        <% } else if (currentUser.isMember === true && currentUser.isAdmin === true) { %>
+          <% allMessages.forEach(function(message) { %>
+            <div class="message">
+              <h3>Title: <%= message.title %></h3>
+              <p>Message: <%= message.text %></p>
+              <p>Author: <%= `${message.user.firstName}  ${message.user.lastName}` %></p>
+              <p class="timestamp"><%= message.timestamp %></p>
+              <button class="delete"><a href="/delete/<%= message._id %>">Delete</a></button>
+            </div>
+          <% }); %>
+
+          <% } else if (currentUser.isMember === true) { %>
+          <% allMessages.forEach(function(message) { %>
+            <div class="message">
+              <h3>Title: <%= message.title %></h3>
+              <p>Message: <%= message.text %></p>
+              <p>Author: <%= `${message.user.firstName}  ${message.user.lastName}` %></p>
+              <p class="timestamp"><%= message.timestamp %></p>
+            </div>        
+            <% }); %>
+        <% } %>
+      </div>
+    </main>
+    <footer>
+      <%- include('./partials/footer'); %>
+    </footer>    
+  </body>
 </html>

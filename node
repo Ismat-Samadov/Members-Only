@@ -1,2 +1,0 @@
-DB_URL: mongodb+srv://admin:admin@cluster0.pg4vlgs.mongodb.net/test
-SESSION_SECRET: mySuperSecretKey
