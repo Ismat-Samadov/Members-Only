@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongo');
-const User = require('../models/user'); 
+const User = require('../models/User');
 require('dotenv').config();
 
 // Create a session store
@@ -22,12 +22,12 @@ router.use(session({
 
 
 // Display the registration form
-router.get('/register', function(req, res) {
+router.get('/register', function (req, res) {
     res.render('register');
 });
 
 // Handle the registration form submission
-router.post('/register', async function(req, res) {
+router.post('/register', async function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -46,12 +46,12 @@ router.post('/register', async function(req, res) {
 });
 
 // Display the login form
-router.get('/login', function(req, res) {
+router.get('/login', function (req, res) {
     res.render('login');
 });
 
 // Handle the login form submission
-router.post('/login', async function(req, res) {
+router.post('/login', async function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
