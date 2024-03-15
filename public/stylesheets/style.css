@@ -19,7 +19,7 @@ a {
 }
 
 .navbar {
-  background-color: #FAEBD7;
+  background-color: #d7d7fa;
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 3fr;
